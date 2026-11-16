@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHERIA 2026: Ночь Сингулярности — VIP Приглашение</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cinzel, Cormorant Garamond, Unbounded & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Unbounded:wght@300;500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Unbounded', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        obsidian: '#050608',
+                        emeraldGlow: '#10b981',
+                        goldLuxury: '#eab308',
+                        amberWarm: '#f59e0b',
+                    },
+                    animation: {
+                        'spin-slow': 'spin 20s linear infinite',
+                        'spin-reverse': 'spin 25s linear infinite reverse',
+                        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 0.4, transform: 'scale(1)' },
+                            '50%': { opacity: 0.85, transform: 'scale(1.08)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-14px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Базовые настройки и кастомный скроллбар */
+        :root {
+            --gold: #eab308;
+            --emerald: #10b981;
+            --bg-dark: #050608;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050608;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #eab308, #10b981);
+            border-radius: 9999px;
+        }
+
+        /* Кастомный курсор подсветки (только на десктопах) */
+        @media (pointer: fine) {
+            .cursor-glow {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 420px;
+                height: 420px;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(234, 179, 8, 0.16) 0%, rgba(253, 224, 71, 0.07) 40%, transparent 70%);
+                pointer-events: none;
+                transform: translate(-50%, -50%);
+                z-index: 5;
+                transition: width 0.3s, height 0.3s;
+            }
+            .cursor-dot {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 9px;
+                height: 9px;
+                background: #fde047;
+                border-radius: 50%;
+                pointer-events: none;
+                transform: translate(-50%, -50%);
+                z-index: 9999;
+                box-shadow: 0 0 14px #eab308, 0 0 28px rgba(234, 179, 8, 0.85);
+                transition: transform 0.15s ease-out, background-color 0.2s;
+            }
+        }
+
+        /* Glassmorphism карточки */
+        .glass-panel {
+            background: rgba(15, 20, 28, 0.55);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .glass-panel-hover:hover {
+            border-color: rgba(234, 179, 8, 0.4);
+            box-shadow: 0 25px 60px -10px rgba(16, 185, 129, 0.18), inset 0 1px 0 0 rgba(234, 179, 8, 0.25);
+            transform: translateY(-4px);
+        }
+
+        /* Градиентный золотой и изумрудный текст */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fef08a 0%, #eab308 45%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-aurora {
+            background: linear-gradient(135deg, #ffffff 0%, #a7f3d0 45%, #fde047 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Экран-открытка / Шторки */
+        .curtain-left, .curtain-right {
+            transition: transform 1.3s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .curtains-open .curtain-left {
+            transform: translateX(-105%);
+        }
+        .curtains-open .curtain-right {
+            transform: translateX(105%);
+        }
+        .curtains-open .seal-container {
+            opacity: 0;
+            transform: scale(1.35);
+            pointer-events: none;
+        }
+
+        /* Кинетическая типографика */
+        .kinetic-char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(45px) rotateX(-60deg);
+            filter: blur(8px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.8s ease;
+        }
+        .kinetic-char.revealed {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+            filter: blur(0);
+        }
+
+        /* Анимация появления элементов при скролле */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 3D VIP Карточка с голографическим переливом */
+        .vip-card-wrapper {
+            perspective: 1200px;
+        }
+        .vip-card {
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .vip-holo-sheen {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                115deg,
+                transparent 20%,
+                rgba(16, 185, 129, 0.25) 38%,
+                rgba(234, 179, 8, 0.35) 50%,
+                rgba(255, 255, 255, 0.3) 56%,
+                transparent 75%
+            );
+            mix-blend-mode: color-dodge;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .vip-card:hover .vip-holo-sheen {
+            opacity: 1;
+        }
+
+        /* Анимация смены цифр таймера */
+        @keyframes digitFlip {
+            0% { transform: translateY(-12px); opacity: 0; filter: blur(4px); }
+            100% { transform: translateY(0); opacity: 1; filter: blur(0); }
+        }
+        .digit-animate {
+            animation: digitFlip 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Пульсирующий пин карты */
+        @keyframes radarPing {
+            0% { transform: scale(0.8); opacity: 0.9; }
+            100% { transform: scale(2.8); opacity: 0; }
+        }
+        .radar-ping {
+            animation: radarPing 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        /* Декоративная сетка */
+        .cyber-grid {
+            background-size: 60px 60px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="selection:bg-amber-500/30 selection:text-amber-200">
+
+    <!-- Кастомный курсор -->
+    <div id="cursorGlow" class="cursor-glow hidden md:block"></div>
+    <div id="cursorDot" class="cursor-dot hidden md:block"></div>
+
+    <!-- Фоновый Canvas для 3D-подобных частиц и конфетти -->
+    <canvas id="particleCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Фоновые градиентные сферы -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-emerald-500/10 blur-[130px] animate-pulse-glow"></div>
+        <div class="absolute top-1/3 -right-40 w-[600px] h-[600px] rounded-full bg-amber-500/10 blur-[150px] animate-pulse-glow" style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-48 left-1/4 w-[550px] h-[550px] rounded-full bg-teal-600/10 blur-[140px] animate-pulse-glow" style="animation-delay: 1s;"></div>
+        <div class="absolute inset-0 cyber-grid opacity-60"></div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- 1. ЭКРАН-ОТКРЫТКА / ПЕЧАТЬ (PRELOADER & ENVELOPE SEAL)    -->
+    <!-- ========================================================= -->
+    <div id="envelopeOverlay" class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden">
+        <!-- Левая шторка -->
+        <div class="curtain-left absolute inset-y-0 left-0 w-1/2 bg-[#040507] border-r border-amber-500/20 shadow-[20px_0_60px_rgba(0,0,0,0.95)] flex items-center justify-end pr-8">
+            <div class="hidden sm:block text-right opacity-20 select-none">
+                <p class="font-display text-xs tracking-[0.5em] text-amber-400">ASTANA • KZ</p>
+                <p class="font-serif italic text-2xl text-white mt-1">25.12.2026</p>
+            </div>
+        </div>
+        <!-- Правая шторка -->
+        <div class="curtain-right absolute inset-y-0 right-0 w-1/2 bg-[#040507] border-l border-amber-500/20 shadow-[-20px_0_60px_rgba(0,0,0,0.95)] flex items-center justify-start pl-8">
+            <div class="hidden sm:block text-left opacity-20 select-none">
+                <p class="font-display text-xs tracking-[0.5em] text-emerald-400">PRIVATE GALA</p>
+                <p class="font-serif italic text-2xl text-white mt-1">NUR ALEM</p>
+            </div>
+        </div>
+
+        <!-- Центральная интерактивная печать -->
+        <div class="seal-container relative z-10 flex flex-col items-center text-center px-6 transition-all duration-700">
+            <div class="mb-6">
+                <span class="inline-block px-4 py-1.5 rounded-full text-[11px] font-display tracking-[0.35em] uppercase bg-white/5 border border-amber-500/30 text-amber-300">
+                    Персональное приглашение
+                </span>
+            </div>
+
+            <h2 class="font-display text-2xl sm:text-4xl font-bold tracking-wider text-white mb-2">
+                AETHERIA <span class="text-gradient-gold">2026</span>
+            </h2>
+            <p class="font-serif italic text-lg sm:text-xl text-slate-400 mb-10 max-w-md">
+                Закрытая презентация и футуристический гала-ужин в сердце Астаны
+            </p>
+
+            <!-- Кнопка-печать с вращающимися орбитами -->
+            <button id="openInviteBtn" class="group relative w-44 h-44 sm:w-48 sm:h-48 rounded-full flex items-center justify-center focus:outline-none cursor-pointer">
+                <!-- Внешнее вращающееся кольцо -->
+                <div class="absolute inset-0 rounded-full border border-dashed border-amber-400/40 animate-spin-slow group-hover:border-amber-400 transition-colors"></div>
+                <!-- Внутреннее вращающееся кольцо -->
+                <div class="absolute inset-3 rounded-full border border-emerald-400/30 animate-spin-reverse group-hover:border-emerald-400 transition-colors"></div>
+                <!-- Свечение при наведении -->
+                <div class="absolute inset-4 rounded-full bg-gradient-to-tr from-amber-500/20 via-emerald-500/20 to-amber-300/20 blur-xl group-hover:blur-2xl group-hover:scale-110 transition-all duration-500"></div>
+                
+                <!-- Сердцевина печати -->
+                <div class="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-gradient-to-br from-[#12161f] to-[#07090d] border border-amber-400/50 shadow-[0_0_40px_rgba(234,179,8,0.25)] flex flex-col items-center justify-center p-4 group-hover:scale-105 group-active:scale-95 transition-transform duration-300">
+                    <!-- Монограмма SVG -->
+                    <svg class="w-8 h-8 text-amber-400 mb-1.5 group-hover:text-emerald-300 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
+                        <line x1="12" y1="22" x2="12" y2="15.5"></line>
+                        <polyline points="22 8.5 12 15.5 2 8.5"></polyline>
+                        <polyline points="2 15.5 12 8.5 22 15.5"></polyline>
+                        <line x1="12" y1="2" x2="12" y2="8.5"></line>
+                    </svg>
+                    <span class="font-display text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase text-white leading-tight">
+                        Открыть<br><span class="text-amber-400">приглашение</span>
+                    </span>
+                </div>
+            </button>
+
+            <p class="mt-8 text-xs tracking-[0.25em] uppercase text-slate-500 animate-pulse">
+                Нажмите на печать для входа
+            </p>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- НАВИГАЦИЯ (ПЛАВАЮЩИЙ GLASS-ХЕДЕР)                         -->
+    <!-- ========================================================= -->
+    <header id="mainHeader" class="fixed top-4 inset-x-0 z-40 px-4 sm:px-8 transition-all duration-700 opacity-0 -translate-y-6 pointer-events-none">
+        <nav class="max-w-6xl mx-auto glass-panel rounded-full px-5 sm:px-8 py-3.5 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-2.5 group">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_12px_#10b981] group-hover:scale-125 transition-transform"></span>
+                <span class="font-display text-sm sm:text-base font-bold tracking-widest text-white">
+                    AETHERIA <span class="text-amber-400">’26</span>
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 text-xs font-medium tracking-[0.18em] uppercase text-slate-300">
+                <a href="#concept" class="hover:text-amber-400 transition-colors">Концепция</a>
+                <a href="#timeline" class="hover:text-amber-400 transition-colors">Программа</a>
+                <a href="#dresscode" class="hover:text-amber-400 transition-colors">Дресс-код</a>
+                <a href="#location" class="hover:text-amber-400 transition-colors">Локация</a>
+            </div>
+
+            <a href="#rsvp" class="px-4 sm:px-5 py-2 rounded-full text-xs font-display font-semibold tracking-wider uppercase bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 hover:shadow-[0_0_25px_rgba(234,179,8,0.5)] hover:scale-105 active:scale-95 transition-all">
+                RSVP
+            </a>
+        </nav>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- ОСНОВНОЙ КОНТЕНТ САЙТА                                    -->
+    <!-- ========================================================= -->
+    <main class="relative z-10">
+
+        <!-- ===================================================== -->
+        <!-- 2. ГЛАВНЫЙ ЭКРАН (HERO SECTION)                       -->
+        <!-- ===================================================== -->
+        <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-8 pt-28 pb-16 overflow-hidden">
+            
+            <!-- Декоративные параллакс-элементы на фоне Hero -->
+            <div data-parallax="0.04" class="parallax-el hidden lg:flex absolute top-32 left-[10%] w-24 h-24 rounded-2xl glass-panel items-center justify-center rotate-12 pointer-events-none">
+                <span class="font-display text-xs text-emerald-400 tracking-widest">VIP // 01</span>
+            </div>
+            <div data-parallax="-0.05" class="parallax-el hidden lg:flex absolute bottom-36 right-[10%] w-28 h-28 rounded-full glass-panel items-center justify-center pointer-events-none border-amber-500/20">
+                <span class="font-serif italic text-lg text-amber-300">Astana</span>
+            </div>
+
+            <div class="max-w-5xl mx-auto text-center relative z-10">
+                <!-- Бейдж даты и места -->
+                <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full glass-panel border-amber-500/30 mb-8">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                    <span class="text-xs sm:text-sm font-medium tracking-[0.22em] uppercase text-amber-200">
+                        25 Декабря 2026 • Астана • Сфера NUR ALEM
+                    </span>
+                </div>
+
+                <!-- Кинетический заголовок -->
+                <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.08] mb-6">
+                    <span id="kineticLine1" class="block text-white">AETHERIA 2026</span>
+                    <span id="kineticLine2" class="block text-gradient-aurora mt-2 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wide">
+                        НОЧЬ СИНГУЛЯРНОСТИ
+                    </span>
+                </h1>
+
+                <!-- Подзаголовок -->
+                <p class="font-serif italic text-xl sm:text-2xl md:text-3xl text-slate-300 max-w-2xl mx-auto mb-12 leading-relaxed">
+                    Закрытый футуристический гала-ужин и премьера новой экосистемы будущего на высоте птичьего полета
+                </p>
+
+                <!-- Живой обратный отсчет -->
+                <div class="max-w-2xl mx-auto mb-12">
+                    <p class="text-[11px] font-display tracking-[0.3em] uppercase text-emerald-400 mb-4">
+                        До начала церемонии осталось
+                    </p>
+                    <div class="grid grid-cols-4 gap-3 sm:gap-5">
+                        <!-- Дни -->
+                        <div class="glass-panel rounded-2xl p-3 sm:p-5 border-t border-amber-400/30 relative overflow-hidden group">
+                            <div class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-60"></div>
+                            <div id="cd-days" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white tabular-nums">00</div>
+                            <div class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-slate-400 mt-1">Дней</div>
+                        </div>
+                        <!-- Часы -->
+                        <div class="glass-panel rounded-2xl p-3 sm:p-5 border-t border-emerald-400/30 relative overflow-hidden">
+                            <div class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-60"></div>
+                            <div id="cd-hours" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white tabular-nums">00</div>
+                            <div class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-slate-400 mt-1">Часов</div>
+                        </div>
+                        <!-- Минуты -->
+                        <div class="glass-panel rounded-2xl p-3 sm:p-5 border-t border-amber-400/30 relative overflow-hidden">
+                            <div class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-60"></div>
+                            <div id="cd-minutes" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white tabular-nums">00</div>
+                            <div class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-slate-400 mt-1">Минут</div>
+                        </div>
+                        <!-- Секунды -->
+                        <div class="glass-panel rounded-2xl p-3 sm:p-5 border-t border-emerald-400/30 relative overflow-hidden">
+                            <div class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-60"></div>
+                            <div id="cd-seconds" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-amber-400 tabular-nums">00</div>
+                            <div class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-slate-400 mt-1">Секунд</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Кнопки действия -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#rsvp" class="w-full sm:w-auto px-8 py-4 rounded-full font-display text-xs sm:text-sm font-bold tracking-[0.18em] uppercase bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 text-slate-950 shadow-[0_0_35px_rgba(234,179,8,0.4)] hover:shadow-[0_0_50px_rgba(234,179,8,0.7)] hover:-translate-y-0.5 transition-all">
+                        Подтвердить участие
+                    </a>
+                    <a href="#timeline" class="w-full sm:w-auto px-8 py-4 rounded-full font-display text-xs sm:text-sm font-medium tracking-[0.18em] uppercase glass-panel text-white hover:border-emerald-400/50 hover:text-emerald-300 transition-all">
+                        Программа вечера
+                    </a>
+                </div>
+            </div>
+
+            <!-- Индикатор скролла вниз -->
+            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
+                <span class="text-[10px] tracking-[0.3em] uppercase text-slate-400">Листайте вниз</span>
+                <div class="w-5 h-8 rounded-full border border-slate-500 flex justify-center p-1">
+                    <div class="w-1 h-2 rounded-full bg-amber-400 animate-bounce"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- СЕКЦИЯ КОНЦЕПЦИИ (МАНИФЕСТ ВЕЧЕРА)                    -->
+        <!-- ===================================================== -->
+        <section id="concept" class="py-20 sm:py-28 px-4 sm:px-8 relative">
+            <div class="max-w-5xl mx-auto">
+                <div class="glass-panel rounded-3xl p-8 sm:p-14 md:p-16 relative overflow-hidden reveal-on-scroll">
+                    <!-- Декоративное угловое свечение -->
+                    <div class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-amber-500/15 blur-3xl pointer-events-none"></div>
+                    <div class="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none"></div>
+
+                    <div class="flex flex-col md:flex-row gap-10 items-center">
+                        <div class="flex-1">
+                            <span class="text-xs font-display tracking-[0.3em] uppercase text-emerald-400 block mb-3">
+                                // Манифест события
+                            </span>
+                            <h2 class="font-display text-2xl sm:text-4xl font-bold text-white leading-tight mb-6">
+                                Там, где высокая эстетика встречает <span class="text-gradient-gold">технологии завтрашнего дня</span>
+                            </h2>
+                            <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-6 font-light">
+                                Мы приглашаем избранный круг визионеров, лидеров индустрии и друзей бренда стать первыми свидетелями рождения <strong class="text-white font-semibold">AETHERIA</strong>. Под стеклянным куполом легендарной сферы NUR ALEM вас ждет симфония световых инсталляций, молекулярная гастрономия и закрытый перформанс.
+                            </p>
+                            <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/10">
+                                <div>
+                                    <div class="font-display text-xl sm:text-2xl font-bold text-amber-400">120</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">Избранных гостей</div>
+                                </div>
+                                <div>
+                                    <div class="font-display text-xl sm:text-2xl font-bold text-emerald-400">360°</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">Панорама Астаны</div>
+                                </div>
+                                <div>
+                                    <div class="font-display text-xl sm:text-2xl font-bold text-white">7 Сет</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">Авторское меню</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Абстрактная 3D-сфера на CSS/SVG -->
+                        <div class="w-48 h-48 sm:w-64 sm:h-64 relative flex items-center justify-center shrink-0 animate-float">
+                            <div class="absolute inset-0 rounded-full border border-amber-400/30 animate-spin-slow"></div>
+                            <div class="absolute inset-4 rounded-full border border-dashed border-emerald-400/40 animate-spin-reverse"></div>
+                            <div class="absolute inset-8 rounded-full bg-gradient-to-tr from-emerald-500/20 via-amber-400/20 to-transparent backdrop-blur-md border border-white/20 flex items-center justify-center shadow-[0_0_50px_rgba(16,185,129,0.25)]">
+                                <div class="text-center">
+                                    <span class="font-display text-2xl sm:text-3xl font-black text-gradient-gold block">AE</span>
+                                    <span class="text-[10px] tracking-[0.3em] uppercase text-slate-300">2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 3. ПРОГРАММА ВЕЧЕРА (INTERACTIVE TIMELINE)            -->
+        <!-- ===================================================== -->
+        <section id="timeline" class="py-20 sm:py-28 px-4 sm:px-8 relative">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <span class="text-xs font-display tracking-[0.3em] uppercase text-amber-400 block mb-3">
+                        Хронология ночи
+                    </span>
+                    <h2 class="font-display text-3xl sm:text-5xl font-bold text-white">
+                        Программа <span class="text-gradient-aurora">вечера</span>
+                    </h2>
+                </div>
+
+                <!-- Вертикальная шкала времени -->
+                <div class="relative">
+                    <!-- Центральная/боковая неоновая линия -->
+                    <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-amber-400 via-emerald-400 to-amber-500/20 -translate-x-1/2"></div>
+
+                    <div class="space-y-12">
+                        <!-- Этап 1: 19:00 -->
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between reveal-on-scroll group">
+                            <div class="md:w-[45%] pl-16 md:pl-0 md:text-right md:pr-10">
+                                <span class="inline-block font-display text-sm font-bold tracking-widest text-amber-400 mb-1">19:00</span>
+                                <h3 class="font-display text-xl sm:text-2xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                                    Welcome Drink & Ambient DJ Set
+                                </h3>
+                                <p class="text-slate-400 text-sm sm:text-base mt-2 leading-relaxed">
+                                    Встреча гостей на панорамном уровне. Игристые винтажи, авторские молекулярные коктейли и гипнотический электронный сет от резидентов резиденции.
+                                </p>
+                            </div>
+
+                            <!-- Узел на линии -->
+                            <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-obsidian border-2 border-amber-400 shadow-[0_0_15px_#eab308] group-hover:scale-150 group-hover:bg-amber-400 transition-all z-10"></div>
+
+                            <div class="hidden md:block md:w-[45%] pl-10">
+                                <div class="glass-panel glass-panel-hover rounded-2xl p-5 inline-flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-400">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs uppercase tracking-wider text-slate-400">Локация этапа</div>
+                                        <div class="text-sm font-semibold text-white">Sky Atrium • Уровень 7</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Этап 2: 20:30 -->
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between reveal-on-scroll group">
+                            <div class="hidden md:flex md:w-[45%] justify-end pr-10">
+                                <div class="glass-panel glass-panel-hover rounded-2xl p-5 inline-flex items-center gap-4">
+                                    <div class="text-right">
+                                        <div class="text-xs uppercase tracking-wider text-slate-400">Главный акцент</div>
+                                        <div class="text-sm font-semibold text-white">360° Лазерный купол</div>
+                                    </div>
+                                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Узел на линии -->
+                            <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-obsidian border-2 border-emerald-400 shadow-[0_0_15px_#10b981] group-hover:scale-150 group-hover:bg-emerald-400 transition-all z-10"></div>
+
+                            <div class="md:w-[45%] pl-16 md:pl-10">
+                                <span class="inline-block font-display text-sm font-bold tracking-widest text-emerald-400 mb-1">20:30</span>
+                                <h3 class="font-display text-xl sm:text-2xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                                    Иммерсивное шоу и презентация
+                                </h3>
+                                <p class="text-slate-400 text-sm sm:text-base mt-2 leading-relaxed">
+                                    Кульминация официальной части: кинетическая световая инсталляция и мировая премьера концепта AETHERIA 2026 с участием основателей бренда.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Этап 3: 22:00 -->
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between reveal-on-scroll group">
+                            <div class="md:w-[45%] pl-16 md:pl-0 md:text-right md:pr-10">
+                                <span class="inline-block font-display text-sm font-bold tracking-widest text-amber-400 mb-1">22:00</span>
+                                <h3 class="font-display text-xl sm:text-2xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                                    Гала-ужин от шефа
+                                </h3>
+                                <p class="text-slate-400 text-sm sm:text-base mt-2 leading-relaxed">
+                                    Авторский гастрономический сет из 7 подач, вдохновленный степной природой Казахстана и эстетикой нео-футуризма, в сопровождении струнного квартета.
+                                </p>
+                            </div>
+
+                            <!-- Узел на линии -->
+                            <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-obsidian border-2 border-amber-400 shadow-[0_0_15px_#eab308] group-hover:scale-150 group-hover:bg-amber-400 transition-all z-10"></div>
+
+                            <div class="hidden md:block md:w-[45%] pl-10">
+                                <div class="glass-panel glass-panel-hover rounded-2xl p-5 inline-flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-400">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs uppercase tracking-wider text-slate-400">Гастрономия</div>
+                                        <div class="text-sm font-semibold text-white">Chef’s Table & Wine Pairing</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Этап 4: 00:00 -->
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between reveal-on-scroll group">
+                            <div class="hidden md:flex md:w-[45%] justify-end pr-10">
+                                <div class="glass-panel glass-panel-hover rounded-2xl p-5 inline-flex items-center gap-4">
+                                    <div class="text-right">
+                                        <div class="text-xs uppercase tracking-wider text-slate-400">До рассвета</div>
+                                        <div class="text-sm font-semibold text-white">Secret Guest & Lounge</div>
+                                    </div>
+                                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Узел на линии -->
+                            <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-obsidian border-2 border-emerald-400 shadow-[0_0_15px_#10b981] group-hover:scale-150 group-hover:bg-emerald-400 transition-all z-10"></div>
+
+                            <div class="md:w-[45%] pl-16 md:pl-10">
+                                <span class="inline-block font-display text-sm font-bold tracking-widest text-emerald-400 mb-1">00:00</span>
+                                <h3 class="font-display text-xl sm:text-2xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                                    Секретный хэдлайнер и Afterparty
+                                </h3>
+                                <p class="text-slate-400 text-sm sm:text-base mt-2 leading-relaxed">
+                                    Выступление специального гостя мирового уровня, закрытый сигарный лаунж и танцы под ночным небом столицы.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 4. ДРЕСС-КОД И 3D VIP-ПРОПУСК                         -->
+        <!-- ===================================================== -->
+        <section id="dresscode" class="py-20 sm:py-28 px-4 sm:px-8 relative">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Левая колонка: Интерактивный Дресс-код -->
+                    <div class="lg:col-span-7 reveal-on-scroll">
+                        <span class="text-xs font-display tracking-[0.3em] uppercase text-emerald-400 block mb-3">
+                            Эстетика вечера
+                        </span>
+                        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
+                            Дресс-код: <span class="text-gradient-gold">Black Tie / Cyber Chic</span>
+                        </h2>
+                        <p class="text-slate-300 text-base leading-relaxed mb-8">
+                            Мы просим поддержать атмосферу ночи сингулярности: строгие архитектурные силуэты, благородный бархат, шелк и металлизированные акценты. Наведите на оттенок палитры, чтобы увидеть рекомендации стилистов.
+                        </p>
+
+                        <!-- Интерактивная палитра цветов -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                            <!-- Цвет 1: Обсидиан -->
+                            <button type="button" data-color-title="Глубокий Обсидиан" data-color-desc="Классический смокинг, черные платья в пол с асимметричным кроем и матовыми фактурами." class="swatch-btn group glass-panel rounded-2xl p-4 text-left border border-white/10 hover:border-amber-400/60 transition-all cursor-pointer">
+                                <div class="w-full h-14 rounded-xl bg-[#090b10] border border-white/15 mb-3 shadow-inner group-hover:scale-105 transition-transform"></div>
+                                <div class="font-display text-xs font-bold text-white">Obsidian</div>
+                                <div class="text-[11px] text-slate-400">#090B10</div>
+                            </button>
+
+                            <!-- Цвет 2: Жидкое золото -->
+                            <button type="button" data-color-title="Жидкое Золото" data-color-desc="Акцентные украшения, металлизированная нить, шелковые платки и фурнитура цвета шампань." class="swatch-btn group glass-panel rounded-2xl p-4 text-left border border-white/10 hover:border-amber-400/60 transition-all cursor-pointer">
+                                <div class="w-full h-14 rounded-xl bg-gradient-to-br from-amber-300 via-yellow-500 to-amber-700 mb-3 shadow-[0_0_20px_rgba(234,179,8,0.3)] group-hover:scale-105 transition-transform"></div>
+                                <div class="font-display text-xs font-bold text-white">Liquid Gold</div>
+                                <div class="text-[11px] text-slate-400">#EAB308</div>
+                            </button>
+
+                            <!-- Цвет 3: Неоновый изумруд -->
+                            <button type="button" data-color-title="Изумрудный Неон" data-color-desc="Глубокий изумрудный бархат, атласные акценты и драгоценные камни холодного свечения." class="swatch-btn group glass-panel rounded-2xl p-4 text-left border border-white/10 hover:border-emerald-400/60 transition-all cursor-pointer">
+                                <div class="w-full h-14 rounded-xl bg-gradient-to-br from-emerald-400 via-emerald-600 to-teal-900 mb-3 shadow-[0_0_20px_rgba(16,185,129,0.3)] group-hover:scale-105 transition-transform"></div>
+                                <div class="font-display text-xs font-bold text-white">Cyber Emerald</div>
+                                <div class="text-[11px] text-slate-400">#10B981</div>
+                            </button>
+
+                            <!-- Цвет 4: Хромированный графит -->
+                            <button type="button" data-color-title="Хромированный Графит" data-color-desc="Футуристичный серый металлик, структурированные пиджаки и футуристичные аксессуары." class="swatch-btn group glass-panel rounded-2xl p-4 text-left border border-white/10 hover:border-slate-300/60 transition-all cursor-pointer">
+                                <div class="w-full h-14 rounded-xl bg-gradient-to-br from-slate-300 via-slate-500 to-slate-800 mb-3 group-hover:scale-105 transition-transform"></div>
+                                <div class="font-display text-xs font-bold text-white">Chrome Silver</div>
+                                <div class="text-[11px] text-slate-400">#94A3B8</div>
+                            </button>
+                        </div>
+
+                        <!-- Динамическая подсказка по выбранному цвету -->
+                        <div id="dresscodeHintBox" class="glass-panel rounded-2xl p-5 border-l-4 border-amber-400 transition-all">
+                            <div id="dresscodeHintTitle" class="font-display text-sm font-bold text-amber-300 mb-1">
+                                Рекомендация стилиста: Глубокий Обсидиан
+                            </div>
+                            <p id="dresscodeHintDesc" class="text-sm text-slate-300">
+                                Классический смокинг, черные платья в пол с асимметричным кроем и матовыми фактурами.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Правая колонка: Интерактивная 3D VIP-карточка пропуска -->
+                    <div class="lg:col-span-5 flex flex-col items-center reveal-on-scroll">
+                        <div class="text-center mb-4">
+                            <span class="text-[11px] font-display tracking-[0.25em] uppercase text-slate-400">
+                                Наведите курсор на карту • 3D Pass
+                            </span>
+                        </div>
+
+                        <div class="vip-card-wrapper w-full max-w-[360px]">
+                            <div id="vipTiltCard" class="vip-card w-full aspect-[1.58/1] rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-[#141923] via-[#0a0d13] to-[#050608] border border-amber-400/40 shadow-[0_30px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(234,179,8,0.15)] flex flex-col justify-between select-none">
+                                <!-- Голографический блик -->
+                                <div id="vipHoloSheen" class="vip-holo-sheen"></div>
+
+                                <!-- Верхняя часть карты -->
+                                <div class="flex items-start justify-between relative z-10">
+                                    <div>
+                                        <span class="text-[10px] font-display tracking-[0.3em] uppercase text-emerald-400 block">
+                                            ALL ACCESS PASS
+                                        </span>
+                                        <h3 class="font-display text-lg sm:text-xl font-black tracking-wider text-white mt-0.5">
+                                            AETHERIA <span class="text-amber-400">2026</span>
+                                        </h3>
+                                    </div>
+                                    <!-- Бесконтактный чип -->
+                                    <div class="w-10 h-8 rounded-md bg-gradient-to-tr from-amber-500/40 to-yellow-200/60 border border-amber-300/60 flex items-center justify-center">
+                                        <div class="w-6 h-4 border border-amber-900/40 rounded-sm"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Середина карты -->
+                                <div class="my-auto relative z-10">
+                                    <div class="text-[10px] uppercase tracking-[0.25em] text-slate-400">Владелец пропуска</div>
+                                    <div id="cardPreviewName" class="font-serif italic text-2xl sm:text-3xl text-amber-200 tracking-wide truncate">
+                                        Почетный Гость
+                                    </div>
+                                </div>
+
+                                <!-- Нижняя часть карты + векторный QR-код -->
+                                <div class="flex items-end justify-between relative z-10">
+                                    <div>
+                                        <div class="text-[10px] font-display tracking-widest text-slate-400">25.12.2026 • ASTANA</div>
+                                        <div id="cardPreviewId" class="font-mono text-xs text-emerald-400 mt-0.5">ID: AE-8849-VIP</div>
+                                    </div>
+
+                                    <!-- Стилизованный SVG QR-код -->
+                                    <div class="w-12 h-12 rounded-lg bg-white p-1.5 shadow-md">
+                                        <svg viewBox="0 0 36 36" class="w-full h-full fill-slate-950">
+                                            <rect x="2" y="2" width="10" height="10" rx="1"/>
+                                            <rect x="4" y="4" width="6" height="6" fill="white"/>
+                                            <rect x="5.5" y="5.5" width="3" height="3"/>
+                                            <rect x="24" y="2" width="10" height="10" rx="1"/>
+                                            <rect x="26" y="4" width="6" height="6" fill="white"/>
+                                            <rect x="27.5" y="5.5" width="3" height="3"/>
+                                            <rect x="2" y="24" width="10" height="10" rx="1"/>
+                                            <rect x="4" y="26" width="6" height="6" fill="white"/>
+                                            <rect x="5.5" y="27.5" width="3" height="3"/>
+                                            <rect x="15" y="4" width="3" height="3"/>
+                                            <rect x="15" y="10" width="6" height="3"/>
+                                            <rect x="4" y="15" width="6" height="3"/>
+                                            <rect x="14" y="16" width="8" height="4"/>
+                                            <rect x="26" y="15" width="6" height="3"/>
+                                            <rect x="15" y="24" width="3" height="8"/>
+                                            <rect x="21" y="22" width="4" height="4"/>
+                                            <rect x="28" y="26" width="6" height="6"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 5. ЛОКАЦИЯ И ДЕТАЛИ МЕСТА ПРОВЕДЕНИЯ                  -->
+        <!-- ===================================================== -->
+        <section id="location" class="py-20 sm:py-28 px-4 sm:px-8 relative">
+            <div class="max-w-5xl mx-auto">
+                <div class="glass-panel rounded-3xl overflow-hidden grid grid-cols-1 md:grid-cols-2 reveal-on-scroll">
+                    
+                    <!-- Левая часть: Описание локации и кнопка календаря -->
+                    <div class="p-8 sm:p-12 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-display tracking-[0.3em] uppercase text-amber-400 block mb-3">
+                                Место встречи
+                            </span>
+                            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mb-4">
+                                Сфера NUR ALEM
+                            </h2>
+                            <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                                Самое знаковое футуристическое сооружение Центральной Азии. Панорамный зал на верхнем уровне сферы, откуда открывается завораживающий вид на ночную Астану.
+                            </p>
+
+                            <div class="space-y-3 text-sm text-slate-300 mb-8">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    </span>
+                                    <span>пр. Мангилик Ел, 55/1, Есильский район, Астана</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 shrink-0">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    </span>
+                                    <span>Сбор гостей: 25 декабря 2026 в 19:00 (VIP Valet Parking)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-3">
+                            <button id="addToCalendarBtn" type="button" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full font-display text-xs font-bold tracking-wider uppercase bg-emerald-500/15 border border-emerald-400/50 text-emerald-300 hover:bg-emerald-500 hover:text-slate-950 transition-all cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                Добавить в календарь (.ics)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Правая часть: Стилизованная векторная карта Астаны с анимированным пином -->
+                    <div class="relative min-h-[300px] bg-[#070a0f] border-t md:border-t-0 md:border-l border-white/10 flex items-center justify-center overflow-hidden p-6">
+                        <!-- Стилизованный векторный план дорог и реки Ишим -->
+                        <svg viewBox="0 0 400 320" class="w-full h-full opacity-80">
+                            <defs>
+                                <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+                                    <stop offset="100%" stop-color="#050608" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            <rect width="400" height="320" fill="url(#mapGlow)"/>
+                            
+                            <!-- Координатная сетка -->
+                            <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+                                <line x1="0" y1="80" x2="400" y2="80"/>
+                                <line x1="0" y1="160" x2="400" y2="160"/>
+                                <line x1="0" y1="240" x2="400" y2="240"/>
+                                <line x1="100" y1="0" x2="100" y2="320"/>
+                                <line x1="200" y1="0" x2="200" y2="320"/>
+                                <line x1="300" y1="0" x2="300" y2="320"/>
+                            </g>
+
+                            <!-- Река Есиль (стилизованная дуга) -->
+                            <path d="M -20 60 Q 140 90, 220 40 T 420 75" fill="none" stroke="rgba(16, 185, 129, 0.25)" stroke-width="10" stroke-linecap="round"/>
+                            
+                            <!-- Проспект Мангилик Ел и кольца ЭКСПО -->
+                            <line x1="200" y1="0" x2="200" y2="320" stroke="rgba(234, 179, 8, 0.35)" stroke-width="3" stroke-dasharray="6 4"/>
+                            <line x1="40" y1="185" x2="360" y2="185" stroke="rgba(255, 255, 255, 0.15)" stroke-width="2"/>
+                            
+                            <!-- Контур территории ЭКСПО -->
+                            <circle cx="200" cy="185" r="78" fill="none" stroke="rgba(234, 179, 8, 0.25)" stroke-width="1.5"/>
+                            <circle cx="200" cy="185" r="46" fill="rgba(16, 185, 129, 0.08)" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1"/>
+
+                            <!-- Подписи на карте -->
+                            <text x="215" y="135" fill="rgba(255,255,255,0.4)" font-size="9" font-family="Unbounded">MANGILIK EL AVE</text>
+                            <text x="50" y="52" fill="rgba(16,185,129,0.5)" font-size="8" font-family="Unbounded">RIVER YESIL</text>
+                        </svg>
+
+                        <!-- Анимированный Пин Локации поверх SVG -->
+                        <div class="absolute top-[57%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                            <div class="relative flex items-center justify-center">
+                                <span class="absolute w-12 h-12 rounded-full bg-amber-400/40 radar-ping"></span>
+                                <span class="relative w-5 h-5 rounded-full bg-amber-400 border-2 border-slate-950 shadow-[0_0_20px_#eab308]"></span>
+                            </div>
+                            <div class="mt-2 px-3 py-1 rounded-full glass-panel border-amber-400/40 text-[10px] font-display font-bold tracking-wider text-amber-200 whitespace-nowrap">
+                                NUR ALEM • EXPO
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- 6. ИНТЕРАКТИВНАЯ ФОРМА RSVP И ГЕНЕРАТОР БИЛЕТА        -->
+        <!-- ===================================================== -->
+        <section id="rsvp" class="py-20 sm:py-28 px-4 sm:px-8 relative">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12 reveal-on-scroll">
+                    <span class="text-xs font-display tracking-[0.3em] uppercase text-emerald-400 block mb-3">
+                        Подтверждение присутствия
+                    </span>
+                    <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-3">
+                        Ваш <span class="text-gradient-gold">RSVP</span> статус
+                    </h2>
+                    <p class="text-slate-400 text-sm sm:text-base">
+                        Пожалуйста, подтвердите участие до 15 декабря 2026 для оформления именного цифрового пропуска
+                    </p>
+                </div>
+
+                <!-- Форма RSVP -->
+                <div id="rsvpFormContainer" class="glass-panel rounded-3xl p-6 sm:p-12 reveal-on-scroll">
+                    <form id="rsvpForm" class="space-y-6">
+                        <!-- Поле имени -->
+                        <div>
+                            <label for="guestName" class="block text-xs font-display uppercase tracking-widest text-slate-300 mb-2">
+                                Имя и Фамилия гостя *
+                            </label>
+                            <input type="text" id="guestName" required placeholder="Например: Алихан Сатыбалдин"
+                                class="w-full px-5 py-4 rounded-2xl bg-slate-950/70 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all">
+                        </div>
+
+                        <!-- Выбор статуса участия -->
+                        <div>
+                            <label class="block text-xs font-display uppercase tracking-widest text-slate-300 mb-3">
+                                Статус участия *
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="attendance" value="Обязательно буду" class="peer sr-only" checked>
+                                    <div class="p-4 rounded-2xl bg-slate-950/60 border border-white/10 peer-checked:border-amber-400 peer-checked:bg-amber-500/10 text-center transition-all hover:border-white/30">
+                                        <div class="font-display text-xs font-bold text-white">Я обязательно буду</div>
+                                        <div class="text-[11px] text-amber-400 mt-1">Персональный визит</div>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="attendance" value="Буду с +1" class="peer sr-only">
+                                    <div class="p-4 rounded-2xl bg-slate-950/60 border border-white/10 peer-checked:border-emerald-400 peer-checked:bg-emerald-500/10 text-center transition-all hover:border-white/30">
+                                        <div class="font-display text-xs font-bold text-white">Буду с +1</div>
+                                        <div class="text-[11px] text-emerald-400 mt-1">Двойной VIP-доступ</div>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="attendance" value="Не смогу присутствовать" class="peer sr-only">
+                                    <div class="p-4 rounded-2xl bg-slate-950/60 border border-white/10 peer-checked:border-slate-400 peer-checked:bg-white/5 text-center transition-all hover:border-white/30">
+                                        <div class="font-display text-xs font-bold text-slate-300">К сожалению, нет</div>
+                                        <div class="text-[11px] text-slate-500 mt-1">Передать привет</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Предпочтения по напиткам и меню -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="drinkPref" class="block text-xs font-display uppercase tracking-widest text-slate-300 mb-2">
+                                    Предпочтения по напиткам
+                                </label>
+                                <select id="drinkPref" class="w-full px-5 py-4 rounded-2xl bg-slate-950/70 border border-white/10 text-white focus:outline-none focus:border-emerald-400 transition-all">
+                                    <option value="Винтажное шампанское">Винтажное шампанское</option>
+                                    <option value="Выдержанный виски / Коньяк">Выдержанный виски / Коньяк</option>
+                                    <option value="Красное / Белое вино">Красное / Белое вино</option>
+                                    <option value="Безалкогольные эликсиры">Авторские безалкогольные эликсиры</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="menuPref" class="block text-xs font-display uppercase tracking-widest text-slate-300 mb-2">
+                                    Гастрономический сет
+                                </label>
+                                <select id="menuPref" class="w-full px-5 py-4 rounded-2xl bg-slate-950/70 border border-white/10 text-white focus:outline-none focus:border-emerald-400 transition-all">
+                                    <option value="Классический сет от шефа">Классический сет от шефа</option>
+                                    <option value="Морепродукты и рыба">Морепродукты и рыба</option>
+                                    <option value="Вегетарианская высокая кухня">Вегетарианская высокая кухня</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Кнопка отправки -->
+                        <button type="submit" class="w-full py-4 sm:py-5 rounded-2xl font-display text-xs sm:text-sm font-bold tracking-[0.2em] uppercase bg-gradient-to-r from-amber-400 via-yellow-500 to-emerald-400 text-slate-950 shadow-[0_0_30px_rgba(234,179,8,0.35)] hover:shadow-[0_0_50px_rgba(16,185,129,0.55)] hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer">
+                            Сгенерировать именной VIP-билет
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Сгенерированный именной электронный билет (появляется после отправки формы) -->
+                <div id="generatedTicketContainer" class="hidden">
+                    <div class="glass-panel rounded-3xl p-6 sm:p-10 border border-amber-400/50 shadow-[0_0_60px_rgba(234,179,8,0.2)] relative overflow-hidden">
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-dashed border-white/20">
+                            <div>
+                                <span id="ticketBadge" class="inline-block px-3 py-1 rounded-full text-[10px] font-display tracking-widest uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 mb-2">
+                                    ПОДТВЕРЖДЕНО • VIP ДОСТУП
+                                </span>
+                                <h3 class="font-display text-2xl sm:text-3xl font-black text-white">
+                                    AETHERIA <span class="text-amber-400">2026</span>
+                                </h3>
+                            </div>
+                            <div class="text-left sm:text-right">
+                                <div class="text-[11px] uppercase tracking-widest text-slate-400">Номер пропуска</div>
+                                <div id="ticketUniqueCode" class="font-mono text-lg sm:text-xl font-bold text-amber-400">#AE-2026-9941</div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 py-6">
+                            <div>
+                                <div class="text-[11px] uppercase tracking-widest text-slate-400">Гость</div>
+                                <div id="ticketGuestName" class="font-serif italic text-2xl text-white mt-1">—</div>
+                            </div>
+                            <div>
+                                <div class="text-[11px] uppercase tracking-widest text-slate-400">Статус</div>
+                                <div id="ticketStatus" class="font-semibold text-emerald-300 mt-1">—</div>
+                            </div>
+                            <div>
+                                <div class="text-[11px] uppercase tracking-widest text-slate-400">Выбор шефа и бара</div>
+                                <div id="ticketPreferences" class="text-sm text-slate-200 mt-1">—</div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <p class="text-xs text-slate-400 text-center sm:text-left">
+                                Покажите этот код на входе в Сферу NUR ALEM 25 декабря с 19:00
+                            </p>
+                            <div class="flex gap-3">
+                                <button id="copyTicketBtn" type="button" class="px-5 py-2.5 rounded-full text-xs font-display font-semibold uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer">
+                                    Скопировать код
+                                </button>
+                                <button id="resetRsvpBtn" type="button" class="px-5 py-2.5 rounded-full text-xs font-display font-semibold uppercase tracking-wider border border-amber-400/40 text-amber-300 hover:bg-amber-400/10 transition-all cursor-pointer">
+                                    Изменить данные
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ФУТЕР -->
+    <footer class="relative z-10 border-t border-white/10 py-10 px-4 text-center">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div class="font-display tracking-widest text-slate-400">
+                AETHERIA 2026 © ASTANA, KAZAKHSTAN
+            </div>
+            <div>
+                Консьерж-служба мероприятия: <span class="text-amber-400/80">+7 (7172) 00-20-26</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Всплывающее уведомление (Toast вместо alert) -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 translate-y-24 opacity-0 pointer-events-none transition-all duration-500">
+        <div class="glass-panel rounded-2xl px-6 py-4 border border-emerald-400/50 shadow-[0_10px_40px_rgba(0,0,0,0.8)] flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span id="toastMessage" class="text-sm font-medium text-white">Уведомление</span>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- JAVASCRIPT: АНИМАЦИИ, CANVAS, ТАЙМЕР, 3D-КАРТА И RSVP     -->
+    <!-- ========================================================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            /* ---------------------------------------------------------
+               1. СИСТЕМА УВЕДОМЛЕНИЙ (TOAST)
+            --------------------------------------------------------- */
+            const toastEl = document.getElementById('toastNotification');
+            const toastMsg = document.getElementById('toastMessage');
+            let toastTimeout;
+
+            function showToast(message) {
+                toastMsg.textContent = message;
+                toastEl.classList.remove('translate-y-24', 'opacity-0');
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toastEl.classList.add('translate-y-24', 'opacity-0');
+                }, 3800);
+            }
+
+            /* ---------------------------------------------------------
+               2. CANVAS: 3D-ПОДОБНЫЕ ЧАСТИЦЫ + САЛЮТ / КОНФЕТТИ
+            --------------------------------------------------------- */
+            const canvas = document.getElementById('particleCanvas');
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            // Фоновые золотые и изумрудные частицы глубины
+            const ambientParticles = [];
+            const particleCount = Math.min(85, Math.floor((width * height) / 16000));
+            const colors = ['#eab308', '#10b981', '#fde047', '#6ee7b7', '#ffffff'];
+
+            for (let i = 0; i < particleCount; i++) {
+                ambientParticles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    z: Math.random() * 2 + 0.5, // глубина для параллакса и размера
+                    radius: Math.random() * 2 + 0.6,
+                    vx: (Math.random() - 0.5) * 0.35,
+                    vy: (Math.random() - 0.5) * 0.35 - 0.15,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    alpha: Math.random() * 0.6 + 0.2
+                });
+            }
+
+            // Частицы салюта / конфетти при открытии и RSVP
+            let confettiParticles = [];
+
+            function triggerCelebrationBurst(originX = width / 2, originY = height / 2, count = 130) {
+                const burstColors = ['#eab308', '#fde047', '#10b981', '#34d399', '#ffffff', '#f59e0b'];
+                for (let i = 0; i < count; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 11 + 3;
+                    confettiParticles.push({
+                        x: originX,
+                        y: originY,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed - 3,
+                        size: Math.random() * 6 + 3,
+                        color: burstColors[Math.floor(Math.random() * burstColors.length)],
+                        alpha: 1,
+                        rotation: Math.random() * 360,
+                        vRot: (Math.random() - 0.5) * 12,
+                        gravity: 0.18,
+                        drag: 0.97
+                    });
+                }
+            }
+
+            let mouseX = width / 2;
+            let mouseY = height / 2;
+
+            function animateCanvas() {
+                ctx.clearRect(0, 0, width, height);
+
+                // Отрисовка фоновых частиц и тонких связей
+                for (let i = 0; i < ambientParticles.length; i++) {
+                    const p = ambientParticles[i];
+                    p.x += p.vx * p.z;
+                    p.y += p.vy * p.z;
+
+                    // Легкое смещение от курсора
+                    const dxMouse = (mouseX - width / 2) * 0.0008 * p.z;
+                    const dyMouse = (mouseY - height / 2) * 0.0008 * p.z;
+
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+
+                    const drawX = p.x + dxMouse * 30;
+                    const drawY = p.y + dyMouse * 30;
+
+                    ctx.beginPath();
+                    ctx.arc(drawX, drawY, p.radius * p.z * 0.7, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.alpha;
+                    ctx.fill();
+                }
+
+                // Отрисовка праздничного конфетти
+                for (let i = confettiParticles.length - 1; i >= 0; i--) {
+                    const c = confettiParticles[i];
+                    c.vx *= c.drag;
+                    c.vy *= c.drag;
+                    c.vy += c.gravity;
+                    c.x += c.vx;
+                    c.y += c.vy;
+                    c.rotation += c.vRot;
+                    c.alpha -= 0.011;
+
+                    if (c.alpha <= 0) {
+                        confettiParticles.splice(i, 1);
+                        continue;
+                    }
+
+                    ctx.save();
+                    ctx.translate(c.x, c.y);
+                    ctx.rotate((c.rotation * Math.PI) / 180);
+                    ctx.globalAlpha = c.alpha;
+                    ctx.fillStyle = c.color;
+                    ctx.fillRect(-c.size / 2, -c.size / 4, c.size, c.size / 2);
+                    ctx.restore();
+                }
+
+                ctx.globalAlpha = 1;
+                requestAnimationFrame(animateCanvas);
+            }
+            animateCanvas();
+
+            /* ---------------------------------------------------------
+               3. КИНЕТИЧЕСКАЯ ТИПОГРАФИКА (РАЗБИВКА ЗАГОЛОВКА НА БУКВЫ)
+            --------------------------------------------------------- */
+            function splitTextToChars(elementId) {
+                const el = document.getElementById(elementId);
+                if (!el) return [];
+                const text = el.textContent.trim();
+                el.innerHTML = '';
+                const spans = [];
+
+                text.split('').forEach((char) => {
+                    const span = document.createElement('span');
+                    span.textContent = char === ' ' ? '\u00A0' : char;
+                    span.className = 'kinetic-char';
+                    el.appendChild(span);
+                    spans.push(span);
+                });
+                return spans;
+            }
+
+            const line1Chars = splitTextToChars('kineticLine1');
+            const line2Chars = splitTextToChars('kineticLine2');
+
+            function playKineticHero() {
+                line1Chars.forEach((span, idx) => {
+                    setTimeout(() => span.classList.add('revealed'), 250 + idx * 45);
+                });
+                line2Chars.forEach((span, idx) => {
+                    setTimeout(() => span.classList.add('revealed'), 650 + idx * 35);
+                });
+            }
+
+            /* ---------------------------------------------------------
+               4. ЭКРАН-ОТКРЫТКА / ПЕЧАТЬ (ENVELOPE SEAL)
+            --------------------------------------------------------- */
+            const envelopeOverlay = document.getElementById('envelopeOverlay');
+            const openInviteBtn = document.getElementById('openInviteBtn');
+            const mainHeader = document.getElementById('mainHeader');
+
+            openInviteBtn.addEventListener('click', () => {
+                // Запускаем вспышку конфетти из центра экрана
+                triggerCelebrationBurst(width / 2, height / 2, 160);
+
+                // Раздвигаем шторки
+                envelopeOverlay.classList.add('curtains-open');
+
+                // Показываем навигацию и запускаем кинетический заголовок
+                setTimeout(() => {
+                    mainHeader.classList.remove('opacity-0', '-translate-y-6', 'pointer-events-none');
+                    playKineticHero();
+                }, 400);
+
+                // Удаляем оверлей из DOM после завершения анимации шторок
+                setTimeout(() => {
+                    envelopeOverlay.style.display = 'none';
+                }, 1400);
+            });
+
+            /* ---------------------------------------------------------
+               5. КАСТОМНЫЙ КУРСОР И ПАРАЛЛАКС НА HERO
+            --------------------------------------------------------- */
+            const cursorGlow = document.getElementById('cursorGlow');
+            const cursorDot = document.getElementById('cursorDot');
+            const parallaxElements = document.querySelectorAll('.parallax-el');
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                if (cursorGlow && cursorDot) {
+                    cursorGlow.style.left = `${mouseX}px`;
+                    cursorGlow.style.top = `${mouseY}px`;
+                    cursorDot.style.left = `${mouseX}px`;
+                    cursorDot.style.top = `${mouseY}px`;
+                }
+
+                // Параллакс декоративных плашек
+                const offsetX = mouseX - width / 2;
+                const offsetY = mouseY - height / 2;
+                parallaxElements.forEach((el) => {
+                    const speed = parseFloat(el.getAttribute('data-parallax')) || 0.03;
+                    el.style.transform = `translate3d(${offsetX * speed}px, ${offsetY * speed}px, 0)`;
+                });
+            });
+
+            /* ---------------------------------------------------------
+               6. ЖИВОЙ ОБРАТНЫЙ ОТСЧЕТ ДО 25 ДЕКАБРЯ 2026, 19:00 (ASTANA UTC+5)
+            --------------------------------------------------------- */
+            const targetDate = new Date('2026-12-25T19:00:00+05:00').getTime();
+            const elDays = document.getElementById('cd-days');
+            const elHours = document.getElementById('cd-hours');
+            const elMinutes = document.getElementById('cd-minutes');
+            const elSeconds = document.getElementById('cd-seconds');
+
+            function updateDigit(el, newValue) {
+                const formatted = String(newValue).padStart(2, '0');
+                if (el.textContent !== formatted) {
+                    el.textContent = formatted;
+                    el.classList.remove('digit-animate');
+                    void el.offsetWidth; // перезапуск анимации
+                    el.classList.add('digit-animate');
+                }
+            }
+
+            function updateCountdown() {
+                const now = Date.now();
+                const diff = Math.max(0, targetDate - now);
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                updateDigit(elDays, days);
+                updateDigit(elHours, hours);
+                updateDigit(elMinutes, minutes);
+                updateDigit(elSeconds, seconds);
+            }
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            /* ---------------------------------------------------------
+               7. INTERSECTION OBSERVER (АНИМАЦИИ ПРИ СКРОЛЛЕ)
+            --------------------------------------------------------- */
+            const observerOptions = {
+                threshold: 0.14,
+                rootMargin: '0px 0px -40px 0px'
+            };
+
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+                scrollObserver.observe(el);
+            });
+
+            /* ---------------------------------------------------------
+               8. ИНТЕРАКТИВНЫЙ ДРЕСС-КОД (ПАЛИТРА ОТТЕНКОВ)
+            --------------------------------------------------------- */
+            const swatchBtns = document.querySelectorAll('.swatch-btn');
+            const hintTitle = document.getElementById('dresscodeHintTitle');
+            const hintDesc = document.getElementById('dresscodeHintDesc');
+
+            swatchBtns.forEach((btn) => {
+                const activateSwatch = () => {
+                    const title = btn.getAttribute('data-color-title');
+                    const desc = btn.getAttribute('data-color-desc');
+                    hintTitle.textContent = `Рекомендация стилиста: ${title}`;
+                    hintDesc.textContent = desc;
+                };
+                btn.addEventListener('mouseenter', activateSwatch);
+                btn.addEventListener('click', activateSwatch);
+            });
+
+            /* ---------------------------------------------------------
+               9. 3D TILT-ЭФФЕКТ И ГОЛОГРАФИЧЕСКИЙ БЛИК НА VIP-КАРТЕ
+            --------------------------------------------------------- */
+            const vipCard = document.getElementById('vipTiltCard');
+            const vipHoloSheen = document.getElementById('vipHoloSheen');
+
+            if (vipCard) {
+                vipCard.addEventListener('mousemove', (e) => {
+                    const rect = vipCard.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -14;
+                    const rotateY = ((x - centerX) / centerX) * 14;
+
+                    vipCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+
+                    // Смещение голографического перелива
+                    const percentX = (x / rect.width) * 100;
+                    const percentY = (y / rect.height) * 100;
+                    vipHoloSheen.style.background = `radial-gradient(circle at ${percentX}% ${percentY}%, rgba(255,255,255,0.35), rgba(234,179,8,0.28) 35%, rgba(16,185,129,0.2) 60%, transparent 80%)`;
+                });
+
+                vipCard.addEventListener('mouseleave', () => {
+                    vipCard.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                });
+            }
+
+            /* ---------------------------------------------------------
+               10. ГЕНЕРАЦИЯ .ICS ФАЙЛА ДЛЯ КАЛЕНДАРЯ
+            --------------------------------------------------------- */
+            const addToCalendarBtn = document.getElementById('addToCalendarBtn');
+            addToCalendarBtn.addEventListener('click', () => {
+                const icsContent = [
+                    'BEGIN:VCALENDAR',
+                    'VERSION:2.0',
+                    'PRODID:-//AETHERIA 2026//VIP Gala Astana//RU',
+                    'BEGIN:VEVENT',
+                    'UID:aetheria-2026-astana@vip-invite.kz',
+                    'DTSTAMP:20261116T120000Z',
+                    'DTSTART:20261225T140000Z',
+                    'DTEND:20261225T210000Z',
+                    'SUMMARY:AETHERIA 2026: Ночь Сингулярности (VIP Гала-ужин)',
+                    'DESCRIPTION:Закрытая презентация и футуристический гала-ужин. Дресс-код: Black Tie / Cyber Chic.',
+                    'LOCATION:Сфера NUR ALEM, пр. Мангилик Ел 55/1, Астана, Казахстан',
+                    'END:VEVENT',
+                    'END:VCALENDAR'
+                ].join('\r\n');
+
+                const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'AETHERIA_2026_Astana.ics');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+
+                showToast('Событие AETHERIA 2026 сохранено в файл календаря (.ics)');
+            });
+
+            /* ---------------------------------------------------------
+               11. ИНТЕРАКТИВНАЯ ФОРМА RSVP И ГЕНЕРАЦИЯ ИМЕННОГО БИЛЕТА
+            --------------------------------------------------------- */
+            const rsvpForm = document.getElementById('rsvpForm');
+            const guestNameInput = document.getElementById('guestName');
+            const cardPreviewName = document.getElementById('cardPreviewName');
+            const rsvpFormContainer = document.getElementById('rsvpFormContainer');
+            const generatedTicketContainer = document.getElementById('generatedTicketContainer');
+
+            // Живое обновление имени на 3D-карте при вводе в форму
+            guestNameInput.addEventListener('input', (e) => {
+                const val = e.target.value.trim();
+                cardPreviewName.textContent = val || 'Почетный Гость';
+            });
+
+            rsvpForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = guestNameInput.value.trim();
+                if (!name) return;
+
+                const attendance = document.querySelector('input[name="attendance"]:checked').value;
+                const drink = document.getElementById('drinkPref').value;
+                const menu = document.getElementById('menuPref').value;
+
+                // Генерация уникального номера билета
+                const randomNum = Math.floor(1000 + Math.random() * 9000);
+                const uniqueCode = `#AE-2026-${randomNum}`;
+
+                // Заполнение данных электронного билета
+                document.getElementById('ticketGuestName').textContent = name;
+                document.getElementById('ticketStatus').textContent = attendance;
+                document.getElementById('ticketPreferences').textContent = `${menu} • ${drink}`;
+                document.getElementById('ticketUniqueCode').textContent = uniqueCode;
+                document.getElementById('cardPreviewId').textContent = `ID: AE-${randomNum}-VIP`;
+
+                const ticketBadge = document.getElementById('ticketBadge');
+                if (attendance.includes('Не смогу')) {
+                    ticketBadge.textContent = 'ОТВЕТ ЗАФИКСИРОВАН';
+                    ticketBadge.className = 'inline-block px-3 py-1 rounded-full text-[10px] font-display tracking-widest uppercase bg-slate-500/20 text-slate-300 border border-slate-400/30 mb-2';
+                } else {
+                    ticketBadge.textContent = 'ПОДТВЕРЖДЕНО • VIP ДОСТУП';
+                    ticketBadge.className = 'inline-block px-3 py-1 rounded-full text-[10px] font-display tracking-widest uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 mb-2';
+                    // Запускаем праздничный салют на canvas
+                    triggerCelebrationBurst(width / 2, height * 0.65, 180);
+                }
+
+                // Плавный переход от формы к билету
+                rsvpFormContainer.classList.add('hidden');
+                generatedTicketContainer.classList.remove('hidden');
+                generatedTicketContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                showToast('Ваш персональный VIP-билет успешно сформирован!');
+            });
+
+            // Кнопка редактирования ответа RSVP
+            document.getElementById('resetRsvpBtn').addEventListener('click', () => {
+                generatedTicketContainer.classList.add('hidden');
+                rsvpFormContainer.classList.remove('hidden');
+            });
+
+            // Копирование номера билета в буфер обмена (через совместимый execCommand)
+            document.getElementById('copyTicketBtn').addEventListener('click', () => {
+                const codeText = document.getElementById('ticketUniqueCode').textContent;
+                const tempInput = document.createElement('input');
+                tempInput.value = codeText;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+
+                showToast(`Номер пропуска ${codeText} скопирован!`);
+            });
+        });
+    </script>
+</body>
+</html>
